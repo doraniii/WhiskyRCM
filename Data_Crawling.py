@@ -76,4 +76,4 @@ def func_selectStyle(url, eleClass, subBtnEle) :
 
     return urlList
 
-optionUrlList = func_selectStyle(url, eleClass, subBtnEle)  
+optionUrlList = func_selectStyle(url, eleClass, subBtnEle)
