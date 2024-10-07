@@ -78,4 +78,48 @@ def func_selectStyle(url, eleClass, subBtnEle) :
 
 optionUrlList = func_selectStyle(url, eleClass, subBtnEle)
 
-#테스트 커밋
+def func_getElements() :
+    whkResult = driver.find_element(By.ID, "directoryResults")
+    wskObjs = whkResult.find_elements(By.CLASS_NAME, "mwDirectory-item")
+
+    return wskObjs
+
+# selectStyle함수에서 반환받은 리스트로 하나씩 select해서 나온 결과에 대한 위스키들의 정보를 크롤링
+def func_crawlData(urls):
+    whiskyJson = {}
+    whiskyList = []
+
+    #테스트로 selectList 3개만. 나중에 전체 리스트로 변경
+    for url in urls:
+        url = url
+        driver.get(url)
+
+        wskObjs = func_getElements()
+
+        for i in range(len(wskObjs)) :
+            wskObj = wskObjs[i].find_element(By.CLASS_NAME, "postsItemLink")
+            time.sleep(5)
+            driver.execute_script("arguments[0].click();", wskObj)      
+       
+            # 위스키 이름
+            wskName = driver.find_element(By.CLASS_NAME, "postDetailsTitle").text
+            # 위스키 카테고리
+            CategoryOrigin = driver.find_element(By.CLASS_NAME, "postDetailsStats").text
+            Category = CategoryOrigin.split('Category: ')[-1]
+            # 위스키 설명
+            wskSub = driver.find_element(By.CLASS_NAME, "postDetailsContent").text
+
+            whiskyJson['name'] = wskName
+            whiskyJson["category"] = Category
+            whiskyJson["review"] = wskSub
+
+            whiskyList.append(whiskyJson)
+
+            driver.back()
+            wskObjs = func_getElements()
+            time.sleep(5)
+         
+    return whiskyList
+
+result = func_crawlData(optionUrlList)  
+print(result)
