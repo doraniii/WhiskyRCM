@@ -64,7 +64,7 @@ def func_selectStyle(url, eleClass, subBtnEle) :
         currentUrl = driver.current_url
         index = currentUrl.find('custom_rating_brand')
         #현재 url에 필터값을 끼워넣어준다
-        finalUrl = currentUrl[:index] + 'min_score=85&min_price=1&' + currentUrl[index:]
+        finalUrl = currentUrl[:index] + 'min_score=85&min_price=1&max_price=999&' + currentUrl[index:]
         urlList.append(finalUrl)
         
         time.sleep(5)
