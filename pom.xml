@@ -52,7 +52,15 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<dependency>
+		    <groupId>io.weaviate</groupId>
+  			<artifactId>client</artifactId>
+  			<version>4.7.0</version>  <!-- Check latest version -->
+		</dependency>
 	</dependencies>
+	
+	
 
 	<build>
 		<plugins>
