@@ -33,9 +33,9 @@ $(document).ready(function() {
 		console.log(params)
 		
 		$.ajax({
-			url : "/main/commitQuery",
-			type : "POST",			
-			data : JSON.stringify(params),
+			url : "/main/runQuery",
+			type : "post",			
+			data : params,
 			//요청 성공 시 동작할 콜백 함수 지정
 			success : function(data) {
 				console.log(data);

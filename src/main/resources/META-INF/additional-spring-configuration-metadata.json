@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "weaviate.host",
+    "type": "java.lang.String",
+    "description": "A description for 'weaviate.host'"
+  },
+  {
+    "name": "weaviate.port",
+    "type": "java.lang.String",
+    "description": "A description for 'weaviate.port'"
+  }
+]}
