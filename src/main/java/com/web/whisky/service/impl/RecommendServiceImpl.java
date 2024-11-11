@@ -1,13 +1,20 @@
 package com.web.whisky.service.impl;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.web.whisky.service.RecommendService;
@@ -28,9 +35,14 @@ public class RecommendServiceImpl implements RecommendService {
 	private String host;
 	@Value("${weaviate.port}")
 	private String port;
+	
+	@Value("${deepl.url}")
+	private String deeplApiUrl;
+	@Value("${deepl.key}")
+    private String key;
 
 	@Override
-	public String runQuery(Map<String, Object> params) {
+	public List<Map<String, Object>> runQuery(Map<String, Object> params) {
 		
 		/* WeaviateDB 연결 및 설정*/
 		Config config = new Config("http", host + ":" + port);
@@ -58,26 +70,22 @@ public class RecommendServiceImpl implements RecommendService {
 			.build()
 			.buildQuery();
 
-		Result<GraphQLResponse> result = client.graphQL().raw().withQuery(query).run();
-        
+		/* 쿼리 결과값을 알맞은 형태로 return */
+		Result<GraphQLResponse> result = client.graphQL().raw().withQuery(query).run(); 
             ObjectMapper objectMapper = new ObjectMapper();
-
             JsonNode rootNode = objectMapper.valueToTree(result.getResult());
-
             JsonNode whiskyNode = rootNode.at("/data/Get/Whisky");
             
-            String data = whiskyNode.toString();
-            data = data.replaceAll("%", " percentage");
+            List<Map<String, Object>> resultMap = objectMapper.convertValue(whiskyNode, new TypeReference<List<Map<String, Object>>>(){});
             
-		return data;
+		return resultMap;
 	}
 
-	
 	@Override
 	public String translationReview(Map<String, Object> params) {
-		
-		/* Reponse 받은 결과를 Naver API를 써서 번역 */
+		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }
