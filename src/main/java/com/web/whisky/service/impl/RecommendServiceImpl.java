@@ -66,7 +66,7 @@ public class RecommendServiceImpl implements RecommendService {
 		    .className("Whisky")
 		    .fields(fields)
 			.withNearTextFilter(nearText)
-			.limit(2)
+			.limit(3)
 			.build()
 			.buildQuery();
 

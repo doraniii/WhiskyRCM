@@ -29,6 +29,11 @@ $(document).ready(function() {
 		$("#commit").click(function() {
 			var query = $("input[name=query]").val();
 			func_runQuery(query);
+			$("#whiskyInfo").toggle();
+		});
+
+		$(document).on("click","#retry", function() {
+			location.reload();
 		});
 	}
 	
@@ -36,14 +41,14 @@ $(document).ready(function() {
 	function func_runQuery(query) {
 		var params = {};
 		params['query'] = query;
+		console.log(params);
 		
 		$.ajax({
 			url : "/main/runQuery/commit.do",
 			type : "post",	
-			contentType: 'application/json; charset=UTF-8', // JSON 형식으로 요청
-			data : JSON.stringify(params),               
+			data : params,               
 			success : function(data) {
-				func_getResult(data)
+				func_getResult(data);
 			}
 		});
 	}
@@ -51,14 +56,17 @@ $(document).ready(function() {
 	/* 결과를 Response 받아서 화면에 뿌려주기 */
 	function func_getResult(data) {
 		var result = data.result;
+		console.log(result);
 		html = "";
 		
 		for (i=0; i<result.length; i++) {						
-			html += "<p>" + result[0].name + "</p>";
-			html += "<p>" + result[0].category + "</p>";
-			html += "<p>" + result[0].review + "</p>";
+			html += "<p>" + result[i].name + "</p>";
+			html += "<p>" + result[i].category + "</p>";
+			html += "<p>" + result[i].review + "</p>";
 			html += "<hr/>";
 		}
+		
+		html += "<button type='button' id='retry'>Retry</button>";
 		
 		$("#queryResult").html(html);
 	}
