@@ -80,7 +80,6 @@ public class RecommendServiceImpl implements RecommendService {
 	@Override
 	public String translateReview(Map<String, Object> params) {
 		// 제일 먼저 기존 review 값을 캐시 데이터로
-		// TODO
 
 		/*
 		 * String review = params.get("review[review]").toString(); String targetLang =
