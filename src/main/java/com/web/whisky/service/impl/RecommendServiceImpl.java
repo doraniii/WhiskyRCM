@@ -23,8 +23,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.web.whisky.data.RequestTrans;
-import com.web.whisky.data.ResponseTrans;
 import com.web.whisky.service.RecommendService;
 
 import io.weaviate.client.Config;
@@ -74,8 +72,7 @@ public class RecommendServiceImpl implements RecommendService {
 		JsonNode whiskyNode = rootNode.at("/data/Get/Whisky");
 
 		List<Map<String, Object>> resultMap = objectMapper.convertValue(whiskyNode,
-				new TypeReference<List<Map<String, Object>>>() {
-				});
+				new TypeReference<List<Map<String, Object>>>() {});
 
 		return resultMap;
 	}
