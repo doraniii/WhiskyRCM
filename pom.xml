@@ -42,6 +42,11 @@
 			<scope>provided</scope>
 		</dependency>
 		
+    	<dependency>
+        	<groupId>org.springframework.boot</groupId>
+        	<artifactId>spring-boot-starter-cache</artifactId>
+    	</dependency>
+		
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
@@ -58,6 +63,14 @@
   			<artifactId>client</artifactId>
   			<version>4.9.0</version>  <!-- Check latest version -->
 		</dependency>
+		
+		<dependency>
+    		<groupId>net.sf.json-lib</groupId>
+    		<artifactId>json-lib</artifactId>
+    		<version>2.3</version>
+    		<classifier>jdk15</classifier>
+		</dependency>
+
 	</dependencies>
 	
 	
@@ -69,6 +82,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<defaultGoal>install</defaultGoal>
 	</build>
 
 </project>
