@@ -32,10 +32,17 @@ public class RecommendController {
 		return "MainQuery";
 	}
 
-	/* 쿼리를 받아와서 WeaviateDB에 던지기*/
+	/* 쿼리를 받아와서 WeaviateDB에 던지기 */
 	@PostMapping("/main/runQuery/commit.do")
 	public String runQuery(@RequestParam Map<String, Object> params, ModelMap model) {			
 		model.addAttribute("result", recommendService.runQuery(params));	
+		return "jsonView";
+	}
+	
+	/* 리뷰 번역 */
+	@PostMapping("/main/runQuery/translateReview.do")
+	public String translateReview(@RequestParam Map<String, Object> params, ModelMap model) {	
+		model.addAttribute("result", recommendService.translateReview(params));	
 		return "jsonView";
 	}
 	
