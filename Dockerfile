@@ -1,16 +1,15 @@
-FROM openjdk:21-jdk
+FROM tomcat:10.1.33.0-openjdk:21-jdk
 
 # Jar 파일의 위치
-ARG JAR_FILE=target/*.war
+
+RUN rm -Rf /opt/tomcat/latest/webapps/ROOT
+ARG ENVIRONMENT
+ENV SPRING_PROFILES_ACTIVE=${ENVIRONMENT}
+
+ARG WAR_FILE=target/*.war
 
 # app.jar는 경우에 따라 이름 변경
-COPY ${WAR_FILE} whisky-0.0.1-SNAPSHOT.war
+COPY ${WAR_FILE} /opt/tomcat/latest/webapps/ROOT.war
 
 # 생략 가능 - 해당 컨테이너는 8080 port 를 사용한다는 의미.
 EXPOSE 8903
-
-# docker run 시 실행할 필수 명령어
-ENTRYPOINT ["java", "-jar", "/app.jar"]
-
-# 경우에 따라 java 옵션 사용.
-# ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=docker", "/app.jar"]
