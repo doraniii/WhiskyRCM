@@ -1,10 +1,10 @@
 FROM openjdk:21-jdk
 
 # Jar 파일의 위치
-ARG JAR_FILE=target/*.jar
+ARG JAR_FILE=target/*.war
 
 # app.jar는 경우에 따라 이름 변경
-COPY ${JAR_FILE} app.jar
+COPY ${WAR_FILE} app.war
 
 # 생략 가능 - 해당 컨테이너는 8080 port 를 사용한다는 의미.
 EXPOSE 8903
