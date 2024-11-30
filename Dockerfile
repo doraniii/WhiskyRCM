@@ -1,4 +1,4 @@
-FROM tomcat:10.1.33.0-openjdk:21-jdk
+FROM doraniii/webapp:1.2
 
 # Jar 파일의 위치
 
