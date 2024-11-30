@@ -42,11 +42,6 @@ public class RecommendServiceImpl implements RecommendService {
 	@Value("${weaviate.port}")
 	private String port;
 
-	@Value("${deepl.url}")
-	private String deeplApiUrl;
-	@Value("${deepl.key}")
-	private String key;
-
 	@Override
 	public List<Map<String, Object>> runQuery(Map<String, Object> params) {
 
