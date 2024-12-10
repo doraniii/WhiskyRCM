@@ -11,7 +11,7 @@
 # ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=docker", "/app.jar"]
 
 FROM doraniii/webapp:1.2
-ARG WAR_FILE=./target/ROOT.war
+ARG WAR_FILE= /home/runner/work/WhiskyRCM/WhiskyRCM/target/ROOT.war
 EXPOSE 8905
 COPY ${WAR_FILE} /opt/tomcat/latest/webapps/ROOT.war
 CMD ["catalina.sh", "run"]

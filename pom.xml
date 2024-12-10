@@ -57,8 +57,6 @@
 		</dependency>
 
 	</dependencies>
-	
-	
 
 	<build>
 		<finalName>ROOT</finalName>
