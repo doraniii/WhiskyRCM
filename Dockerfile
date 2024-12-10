@@ -11,8 +11,10 @@
 # ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=docker", "/app.jar"]
 
 FROM doraniii/webapp:1.2
-ARG WAR_FILE= /home/runner/work/WhiskyRCM/WhiskyRCM/target/ROOT.war
-EXPOSE 8905
-COPY ${WAR_FILE} /opt/tomcat/latest/webapps/ROOT.war
-CMD ["catalina.sh", "run"]
+ARG JAR_FILE=target/*.jar
+
+COPY ${JAR_FILE} whisky-0.0.1-SNAPSHOT.jar
+# COPY build/libs/*.jar my-project.jar
+ENTRYPOINT ["java","-jar","/whisky-0.0.1-SNAPSHOT.jar"]
+
 RUN ln -snf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
