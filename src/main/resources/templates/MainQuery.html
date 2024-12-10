@@ -1,25 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
 </head>
-<body>	
-	<div>
-		<form name="whiskyInfo" id="whiskyInfo" method="post">
-			<input type="text" name="query" placeholder="Please tell me your taste in whiskey.">
-			<button type="button" id="commit">commit</button>
-		</form>
-	</div>
-		
-	<div id="queryResult">
-		<span></span>
-	</div>
+<body>
+    <div>
+        <form name="whiskyInfo" id="whiskyInfo" method="post" th:action="@{/main/runQuery/commit}" th:object="${query}">
+            <input type="text" name="query" placeholder="Please tell me your taste in whiskey.">
+            <button type="button" id="commit">Commit</button>
+        </form>
+    </div>
 
-<script src="/lib/jquery-3.7.1.min.js"></script>
-<script type="text/javascript">
+    <div id="queryResult">
+        <span></span>
+    </div>
+
+    <script src="/lib/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
 $(document).ready(function() {
 	
 	set_Event();
@@ -51,10 +49,9 @@ $(document).ready(function() {
 				func_getResult(data);
 				
 				/* 진짜 데이터 */
-				/* var review = data; 
-				console.log(review) */
+				var review = data; 
 				
-				/* API 테스트용 가짜 데이터 */
+				/* API 테스트용 가짜 데이터
 				var review = [
     				{
         				category: 'Single Malt Scotch',
@@ -66,7 +63,7 @@ $(document).ready(function() {
         				name: 'Highland Park Sigurd, 43%',
         				review: 'Sorry'
     				}
-				];
+				];*/
 				
 				$(document).on("click","#trans", function() {
 					var checkEng = true;
