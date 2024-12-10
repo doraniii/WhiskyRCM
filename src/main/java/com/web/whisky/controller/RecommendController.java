@@ -27,7 +27,7 @@ public class RecommendController {
 	}
 
 	/* 메인화면 */
-	@GetMapping("/")
+	@GetMapping("")
 	public String mainPage() {
 		return "MainQuery";
 	}
