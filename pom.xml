@@ -11,7 +11,7 @@
 	<groupId>com.web</groupId>
 	<artifactId>whisky</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>whisky</name>
 	<description>First Side project WHISKY</description>
 	<url/>

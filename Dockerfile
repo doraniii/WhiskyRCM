@@ -11,10 +11,10 @@
 # ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=docker", "/app.jar"]
 
 FROM doraniii/webapp:1.2
-ARG JAR_FILE=target/*.jar
+ARG JAR_FILE=target/*.war
 
-COPY ${JAR_FILE} whisky-0.0.1-SNAPSHOT.jar
+COPY ${JAR_FILE} whisky-0.0.1-SNAPSHOT.war
 # COPY build/libs/*.jar my-project.jar
-ENTRYPOINT ["java","-jar","/whisky-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-war","/whisky-0.0.1-SNAPSHOT.war"]
 
 RUN ln -snf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
