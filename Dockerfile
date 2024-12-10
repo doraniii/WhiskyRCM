@@ -14,5 +14,6 @@ FROM doraniii/webapp:1.2
 ARG WAR_FILE=target/*.war
 EXPOSE 8905
 COPY ${WAR_FILE} /opt/tomcat/latest/webapps/ROOT.war
-ENTRYPOINT ["java","-jar","/whisky-0.0.1-SNAPSHOT.war"]
+#ENTRYPOINT ["java","-jar","/ROOT.war"]
+CMD ["catalina.sh", "run"]
 RUN ln -snf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
